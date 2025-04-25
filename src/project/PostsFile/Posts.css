@@ -1,0 +1,13 @@
+.Post {
+    width: 12rem;
+    height: auto;
+
+    margin: 0 0 2rem 0;
+
+    /* display: inline-block; */
+
+    font-size: 0.7em;
+
+    border: 0.2rem solid black;
+
+}

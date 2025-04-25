@@ -1,0 +1,28 @@
+.Feed_tape{
+    position: relative;
+
+    /* background-color: rgb(129, 164, 200); */
+    
+    width: 60vw;
+    /* height: 50vw; */
+    
+    padding: 0.7rem;
+    border: 5px solid black;
+
+ 
+    display: inline-flex;
+    flex-direction: column;
+    
+    align-items: center;
+    
+
+    /* overflow-y: hidden; */
+
+
+}
+
+
+.post_container{
+    width: 20rem;
+    height: 20rem;
+}

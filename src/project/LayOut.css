@@ -1,0 +1,79 @@
+.layout_template {
+    position: relative;
+
+    /* background-color: rgb(129, 164, 200); */
+    
+    width: 100vw;
+    height: 100vh;
+
+    border: 7px solid black;
+
+ 
+    display: flex; 
+    
+
+    /* overflow-y: hidden; */
+
+}
+
+.layout_template_center {
+position: absolute;
+
+width: 100vw;
+height: 100vh;
+
+margin: 0.1rem;
+border: 0.4rem dashed rgb(221, 24, 24);
+
+
+display: flex;
+flex-direction: column;
+align-items: center; 
+
+
+}
+
+
+
+
+
+.topic_container{
+    position: relative;
+
+    width: 10rem;
+    height: 5rem;
+
+    margin: 0.4rem;
+
+    display: flex;
+    border: 0.4rem double  rgb(145, 99, 215);
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 0.7rem;
+
+    
+    left: auto;
+    right: auto;
+
+
+
+    /* flex-flow: row nowrap; */
+    
+}
+
+.link_button{
+    position: relative;
+
+    display: inline;
+
+    color: aliceblue;
+    text-decoration: dashed;
+
+}
+
+.link_button > * {
+     /* color: aliceblue;  */
+    text-decoration:dotted;
+}
