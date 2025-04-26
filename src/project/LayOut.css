@@ -37,28 +37,28 @@ align-items: center;
 
 
 
-.topic_container{
+.filter_container{
     position: relative;
 
     width: 10rem;
     height: 5rem;
 
+    left: auto;
+    right: auto;
+
     margin: 0.4rem;
 
     display: flex;
-    border: 0.4rem double  rgb(145, 99, 215);
+    /* flex-direction: column; */
 
     justify-content: center;
     align-items: center;
 
     gap: 0.7rem;
 
-    
-    left: auto;
-    right: auto;
 
 
-
+    border: 0.4rem double  rgb(145, 99, 215);
     /* flex-flow: row nowrap; */
     
 }
@@ -76,4 +76,23 @@ align-items: center;
 .link_button > * {
      /* color: aliceblue;  */
     text-decoration:dotted;
+}
+
+.filter {
+    /* position: relative; */
+    width: 100px;
+    height: 100px;
+
+    display: inline-block;
+
+    border: 0.2rem solid black;
+    border-radius: 20%;
+    /* background-color: ; */
+}
+
+.blckFltr {
+    position:absolute;
+
+    top: 6rem
+
 }

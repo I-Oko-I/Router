@@ -11,9 +11,11 @@ import { PostTemplate } from "./PostsFile/PostTemplate";
 
 export let Feed = (props)=>{
 
-    let site_status = useLocation()
-    site_status = site_status.pathname
-    console.log(site_status)
+    let site_status = useParams()
+    site_status = site_status.topic
+    // console.log(site_status)
+
+    // let fltData = (site_status === 'common') ? data :(data.filter((val) => {val.topic == site_status}))
 
     // let temp = `/first/common/${val.id}/`
 
@@ -32,15 +34,14 @@ export let Feed = (props)=>{
                 {data.map((val,id)=>{
                     return(
 
-                        <Link to={`/first/common/1/`} key={id}>
+                        <Link to={`./1/`} key={id}>
                             <PostTemplate data={val}></PostTemplate>
                         </Link>
                 )
                     
                 })}
                 
-            </div>
-            )
+            </div>)
 
             :
 

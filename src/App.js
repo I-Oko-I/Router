@@ -1,5 +1,5 @@
 
-import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, Navigate, useNavigate, redirect } from 'react-router-dom';
 import './App.css';
 
 import { Feed } from './project/FeedComponent.js';
@@ -25,25 +25,30 @@ export default App;
 const router = createBrowserRouter([
   
   {
-    path: "/first/",
+    path: "/",
     element: <Layout/>,
     children: [
-      {
-        index:true,
-        element:<Temp/>,
-        // element:<Navigate to="/commom/"></Navigate>,
-      },
-      {
-        path:"common/",
-        element:<Feed/>,
-        children:[
+        {
+          index:true,
+          // element:<Temp/>,
+          element:<Navigate to="/commom/"></Navigate>,
+        },
+        // 
+        {
+          path:":topic/",
+          children:[
+
           {
-            path:"1/",
-            element:<Post/>, 
+            index:true,
+            element:<Feed/>,
           },
-        ]
-      }
-      // 
+          {
+              path:":id/",
+              element:<Post/>, 
+          },
+          ]
+        }
+        // 
     ]
   },
 

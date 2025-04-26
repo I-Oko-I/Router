@@ -1,8 +1,10 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 export let Temp = ()=>{
+
     return (
 
-         <Link to={`/first/common/`}>Тыкни</Link>
+         <Link to={`./common/`}>Тыкни, но это ошибка</Link>
+
 )
 }

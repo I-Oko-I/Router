@@ -7,27 +7,26 @@ import data from "../../DataFile/data.json"
 
 export let Post = ()=>{
 
+    let error = useNavigate()
+
     let {id} = useParams()
 
     let content = data.find((val)=>{return val.id === Number(id)})
 
-    // let content = data[temp]
-
-    let error = useNavigate()
+    if(content==undefined) {error('/error')}
 
     console.log(content)
 
+
     return (
         <>
-            {(content!==undefined)?
-                <div className="Post">
-                    <h1>{content.content.article}</h1>
-                    <h2>{content.content.article}</h2>
-                    <Outlet></Outlet>
-                </div>
-            :
-            error('/error')
-            }
+            {(content===undefined)? <h1>content=undefined</h1> :
+            <div className="Post">
+            <h1>{content.content.h1}</h1>
+            <h2>{content.content.h1}</h2>
+            <Outlet></Outlet>
+        </div>
+        }
         </>
     )
 }
