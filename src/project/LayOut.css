@@ -16,6 +16,19 @@
 
 }
 
+.addRouter{
+
+    margin: 1rem;
+
+    z-index: 1001;
+}
+
+.addRouter_button{
+    width: 2rem;
+    height: 2rem;
+
+}
+
 .layout_template_center {
 position: absolute;
 
@@ -43,13 +56,11 @@ align-items: center;
     width: 10rem;
     height: 5rem;
 
-    left: auto;
-    right: auto;
 
     margin: 0.4rem;
 
     display: flex;
-    /* flex-direction: column; */
+    flex-direction: column;
 
     justify-content: center;
     align-items: center;
@@ -64,7 +75,7 @@ align-items: center;
 }
 
 .link_button{
-    position: relative;
+    /* position: relative; */
 
     display: inline;
 
@@ -78,21 +89,45 @@ align-items: center;
     text-decoration:dotted;
 }
 
-.filter {
-    /* position: relative; */
-    width: 100px;
-    height: 100px;
-
-    display: inline-block;
-
-    border: 0.2rem solid black;
-    border-radius: 20%;
-    /* background-color: ; */
-}
-
-.blckFltr {
+.blockFltr {
     position:absolute;
 
-    top: 6rem
+    /* display: flex; */
+
+    top: 6rem;
+
+    padding: 0 1rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 1000;
+
+   border: 0.2rem solid black;
 
 }
+
+.filter_button {
+    /* position: relative; */
+    width: 8rem;
+    height: 3.2rem;
+
+    left: auto;
+    right: auto;
+
+    /* display: block; */
+    /* padding: 1em; */
+
+    border: 0.49rem double black;
+    border-radius:1rem;
+    background-color:rgb(255, 255, 255) ;
+
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 500;
+}
+
+.filter_button_extra {
+    /* position: relative; */
+    margin: 0.4rem 0;
+}
+

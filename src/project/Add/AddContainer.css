@@ -1,0 +1,15 @@
+.add_blank{
+
+
+    border: 0.2rem solid black;
+
+    display: inline-block;
+}
+
+.add_inputContainter, .add_FilterButton1{
+
+
+    padding: 0.5rem;
+    margin: 0.5rem;
+    border: 0.2rem solid rgb(234, 186, 224);
+}

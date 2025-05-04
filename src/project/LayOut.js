@@ -6,11 +6,11 @@ import { useState } from "react";
 
 export let Layout = ()=>{
 
-  // let opn_fltr = () => {
-  //   console.log("Тык")
-  //   setBlckFltr(!blckFltr)
-  // }
-  // let [blckFltr, setBlckFltr] = useState(false)
+  let opn_fltr = () => {
+    console.log("Тык")
+    setBlckFltr(!blckFltr)
+  }
+  let [blckFltr, setBlckFltr] = useState(false)
   // let temp_extra = (
   //   <button className="filter" onClick={opn_fltr}></button>
   //   {(blckFltr === false)? <></>
@@ -24,18 +24,29 @@ export let Layout = ()=>{
 
   return (
     <div className="layout_template">
+      <NavLink to='/add' className="addRouter">
+       <button className="addRouter_button" onClick={()=>{console.log("работай")}}></button> 
+      </NavLink>
+      {/* <button onClick={()=>{console.log("работай")}} ></button> */}
+
       
       <div className="layout_template_center">
         
-        <div className="filter_container">
+          <div className="filter_container">
 
-        <NavLink to='./common/' className="link_button"><button><h3>common</h3></button></NavLink>
-        <NavLink to='./it/' className="link_button"><button><h3>it</h3></button></NavLink>
+            <button className="filter_button" onClick={opn_fltr}>Клик.Клик.Клик</button>
+            {(blckFltr === false)? <></>
+            :
+            <div className="blockFltr">
+              <NavLink to='/common/'><button className="filter_button filter_button_extra">common</button></NavLink>
+              <NavLink to='/it/'><button className="filter_button filter_button_extra">it</button></NavLink>
+            </div>}
 
-        </div>
-        <Outlet/>
+          </div>
+          <Outlet/>
 
       </div>
+
     </div>
   )
 }

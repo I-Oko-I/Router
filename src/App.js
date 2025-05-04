@@ -5,7 +5,7 @@ import './App.css';
 import { Feed } from './project/FeedComponent.js';
 import { Layout } from './project/LayOut';
 import { Post } from './project/PostsFile/PostComponent.js';
-import { Temp } from './project/Temp.js';
+import { AddTemplate, Temp } from './project/Add/AddContainer.js';
 import { Mistake } from './project/Mistake/Mistake.js';
 
 // import { T_It } from './project/Topics/PostTemplate';
@@ -21,7 +21,6 @@ function App() {
 export default App;
 
 
-
 const router = createBrowserRouter([
   
   {
@@ -31,7 +30,7 @@ const router = createBrowserRouter([
         {
           index:true,
           // element:<Temp/>,
-          element:<Navigate to="/commom/"></Navigate>,
+          element:<Navigate to="/common/"></Navigate>,
         },
         // 
         {
@@ -55,6 +54,11 @@ const router = createBrowserRouter([
   {
     path: "/error",
     element: <Mistake/>
+  },
+
+  {
+    path: "/add",
+    element: <AddTemplate/>
   }
   // 
 ])

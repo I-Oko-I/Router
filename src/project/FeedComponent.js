@@ -1,9 +1,9 @@
 import { BrowserRouter, NavLink, useLocation, Routes, Route, useNavigate, useParams } from "react-router-dom"
 import { Link } from 'react-router-dom';
+import { useReducer } from "react";
 
 import "./Feed.css"
 import data from "../DataFile/data.json"
-import { useReducer } from "react";
 import { PostTemplate } from "./PostsFile/PostTemplate";
 
 // console.log(data)
@@ -13,13 +13,13 @@ export let Feed = (props)=>{
 
     let site_status = useParams()
     site_status = site_status.topic
-    // console.log(site_status)
 
-    // let fltData = (site_status === 'common') ? data :(data.filter((val) => {val.topic == site_status}))
+    let fltData = (site_status === 'common') ? data : data.filter((val) =>  val.topic == site_status)
 
-    // let temp = `/first/common/${val.id}/`
+    console.log(fltData)
 
-    
+
+
 
 
     return (
@@ -31,10 +31,10 @@ export let Feed = (props)=>{
 
                 
 
-                {data.map((val,id)=>{
+                {fltData.map((val,id)=>{
                     return(
 
-                        <Link to={`./1/`} key={id}>
+                        <Link to={`./${val.id}/`} key={id}>
                             <PostTemplate data={val}></PostTemplate>
                         </Link>
                 )
