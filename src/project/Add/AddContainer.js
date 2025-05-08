@@ -1,94 +1,66 @@
-import { useState } from "react"
+import { useState,useContext, useMemo } from "react"
 import { Link, useNavigate } from "react-router-dom"
 
 import "./AddContainer.css"
+import { Context_XportData } from "../../AppContext"
 
-import data from "../../DataFile/data.json"
-import {getinfo, setinfo} from "../../DataFile/dataLocalStorage.js"
-import { type } from "@testing-library/user-event/dist/type/index.js"
+// import data from "../../DataFile/data.json"
 
 
-// setinfo({apple: 'green'})
-
-// console.log(getinfo())
 
 
 export let AddTemplate = ()=>{
 
+    let {state_XportData, setState_XportData} = useContext(Context_XportData)
+    let data = state_XportData
+    let constId_data = useMemo(()=>(data.length),[])
 
-    let saveInput = (propsThis)=>{
-        let value = propsThis.target.value
-        let id = propsThis.target.id
-        let type = propsThis.target.className.split('_')[1]
+    // console.log("перерендер")
 
-
-        let tempResult= state_addInput
-        tempResult[id] = Object.assign({},{[type]:value})
-
-        setState_addInput(tempResult)
-
-
-        console.log(tempResult)
-    }
-
-    let initAddInput = [{"filter":undefined},{'article':undefined}]
+    let initAddInput = [{"filter":"common"},{'article':undefined}]
     let [state_addInput,setState_addInput] = useState(initAddInput)
+
 
 
     let addInput = () => {
         console.log('добавить')
 
-        let input_blank = {'h1':undefined}
+        let input_blank = {'text':undefined}
 
-        let temp = state_addInput
+        let temp = [...state_addInput]
         temp.push(input_blank)
 
 
-        // console.log(temp)
-
         setState_addInput(temp)
-
     }
 
-    
-    // 
-    // 
-    // 
-    // 
+
     let submitBlank = () => {
         console.log(data)
        
-        let recompResult = new Object
 
-        state_addInput.map((val,id,array)=>{
-            return  recompResult[Object.keys(val)[0]] = Object.keys(val)[1]
-        })
+        let temp = {
+            id : Number(data.length+1),
+            topic: Object.values(state_addInput[0])[0],
+            content : state_addInput.slice(1, state_addInput.length)
+        }
 
-        console.log(recompResult)
-
-
-
-        // let temp = {
-        //     id : Number(data.length+1),
-        //     topic: recompResult.topic,
-        //     content : recompResult
-        // }
-
-        // console.log(temp)
-        // закинь объект в массив
-        // data.push(new Array({id:data.length, topic:result[Object.keys(result)[0]], content: object_temp}))
+        let temp2 = [...state_XportData]
+        temp2[constId_data] = temp
+        setState_XportData(temp2)
     }
 
 
     let Blank = ({classNameProps, id}) => {
 
-        classNameProps = Object.keys(classNameProps)[0].split(' ')
-        classNameProps.splice(0,0,'addinput')
 
-        let stringClassNameProps = classNameProps.join('_')
+        let inputTypeTemp = Object.keys(classNameProps)[0].split(' ')
+        inputTypeTemp.splice(0,0,'addinput')
 
+        let stringClassNameProps = inputTypeTemp.join('_')
 
-        // console.log(id)
+        // 
+        //
 
         let typeFormat = 
         {
@@ -98,35 +70,60 @@ export let AddTemplate = ()=>{
 
         let pHFormat = {
             'text': "Впишите свой текст",
-            'article' : 'text',
+            'article' : 'О чем хотите поговорить?',
         }
 
-        let typeProps = String(typeFormat[classNameProps[1]])
+        let typeProps = String(typeFormat[inputTypeTemp[1]])
 
-        let pHProps = String(pHFormat[classNameProps[1]])
+        let pHProps = String(pHFormat[inputTypeTemp[1]])
 
         let method = (typeProps !== "filter") ? "input" : "filter"
 
-        // console.log(`tf:${typeProps}`)
-        // console.log(`ph:${pHProps}`)
-        // console.log(`cn:${classNameProps}`)
-        // console.log(`scn:${stringClassNameProps}`)
+
+        let memoValueState_addInput = useMemo(()=>state_addInput,[Object.values(state_addInput[id])[0]])
+        console.log(Object.values(memoValueState_addInput[id])[0])
+        let value = Object.values(memoValueState_addInput[id])[0]
+        // Попробовал мемоизировать
+
+
+        let saveInput = (e)=>{
+            // let value = e.target.value
+            // let id = e.target.id
+            // let type = e.target.className.split('_')[1]
+    
+            // let tempResult= state_addInput
+            // tempResult[id] = Object.assign({},{[type]:value})
+
+            let tempResult = [...state_addInput]
+            tempResult[id][Object.keys(tempResult[id])[0]] = e.target.value
+
+            console.log(tempResult)
+    
+            setState_addInput(tempResult)
+    
+        }
 
 
         switch(method) {
             case "input":
                 return <div className="add_inputContainter">
-                    <input type={`${typeProps}`} id={id} className={`${stringClassNameProps}`} placeholder={`${pHProps}`} onChange={saveInput}></input>
+                    <input type={`${typeProps}`} id={id} className={`${stringClassNameProps}`} placeholder={`${pHProps}`} onChange={saveInput} /*onBlur={saveInput}*/ value={value} /*onChange={(e)=>{funcChange(e)}}*/></input>
                     <div className="status"></div>
                 </div>
             case "filter":
-                return <div className="add_FilterButton1">фильтр{/*Не забыть поставить id */}
-                </div>
+                return <div className="add_FilterButton1" id={id}>фильтр</div>
         }
 
 
             
         }
+
+        // Дружище, нужно сделать мемоизацию создания списка инпутов и изменения значения.
+        // 1.1 Найти нужные переменные хука для создания списка, мемоизируй по типу изменения числа элементов в массиве
+        // 2.1 Сделай мемоизацию внутри Blank для хука по типу изменения значения для его типа данных
+
+        let memoMapState_addInput = useMemo(()=>state_addInput,[state_addInput.length])
+        console.log(memoMapState_addInput.length)
 
     return (
         <>

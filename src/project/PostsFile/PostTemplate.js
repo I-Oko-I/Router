@@ -9,7 +9,7 @@ export let PostTemplate = ({data})=>{
 
     let content = data.content
 
-    let article = Object.values(content)[1]
+    let article = Object.values(content[0])[0]
 
     return (
         <>
