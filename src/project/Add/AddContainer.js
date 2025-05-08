@@ -9,7 +9,7 @@ import { Context_XportData } from "../../AppContext"
 
 
 
-export let AddTemplate = ()=>{
+export let AddContainer = ()=>{
 
     let {state_XportData, setState_XportData} = useContext(Context_XportData)
     let data = state_XportData
@@ -80,9 +80,9 @@ export let AddTemplate = ()=>{
         let method = (typeProps !== "filter") ? "input" : "filter"
 
 
-        let memoValueState_addInput = useMemo(()=>state_addInput,[Object.values(state_addInput[id])[0]])
-        console.log(Object.values(memoValueState_addInput[id])[0])
-        let value = Object.values(memoValueState_addInput[id])[0]
+        // let memoValueState_addInput = useMemo(()=>state_addInput,[Object.values(state_addInput[id])[0]])
+        // console.log(Object.values(memoValueState_addInput[id])[0])
+        // let valueProps = Object.values(memoValueState_addInput[id])[0]
         // Попробовал мемоизировать
 
 
@@ -94,10 +94,15 @@ export let AddTemplate = ()=>{
             // let tempResult= state_addInput
             // tempResult[id] = Object.assign({},{[type]:value})
 
-            let tempResult = [...state_addInput]
-            tempResult[id][Object.keys(tempResult[id])[0]] = e.target.value
+            let tempResult = (prev)=> {
 
-            console.log(tempResult)
+                let temp = [...prev]
+                console.log(temp[id][Object.keys(temp[id])])
+                temp[id][Object.keys(temp[id])] = e.target.value
+                return temp
+            }
+
+            // console.log(tempResult)
     
             setState_addInput(tempResult)
     
@@ -107,7 +112,7 @@ export let AddTemplate = ()=>{
         switch(method) {
             case "input":
                 return <div className="add_inputContainter">
-                    <input type={`${typeProps}`} id={id} className={`${stringClassNameProps}`} placeholder={`${pHProps}`} onChange={saveInput} /*onBlur={saveInput}*/ value={value} /*onChange={(e)=>{funcChange(e)}}*/></input>
+                    <input type={`${typeProps}`} id={id} className={`${stringClassNameProps}`} placeholder={`${pHProps}`} onChange={saveInput} /*onBlur={saveInput}*/ value={Object.values(state_addInput[id])[0]} /*onChange={(e)=>{funcChange(e)}}*/></input>
                     <div className="status"></div>
                 </div>
             case "filter":
@@ -123,7 +128,7 @@ export let AddTemplate = ()=>{
         // 2.1 Сделай мемоизацию внутри Blank для хука по типу изменения значения для его типа данных
 
         let memoMapState_addInput = useMemo(()=>state_addInput,[state_addInput.length])
-        console.log(memoMapState_addInput.length)
+        // console.log(memoMapState_addInput.length)
 
     return (
         <>

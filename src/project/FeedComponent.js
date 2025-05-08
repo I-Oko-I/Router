@@ -9,7 +9,7 @@ import { Context_XportData } from "../AppContext.js"
 
 
 
-export let Feed = (props)=>{
+export let FeedComponent = (props)=>{
 
     let {state_XportData, setState_XportData} = useContext(Context_XportData)
     let data = state_XportData

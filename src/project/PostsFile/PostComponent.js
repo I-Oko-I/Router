@@ -7,7 +7,7 @@ import { useContext } from "react";
 
 
 
-export let Post = ()=>{
+export let PostComponent = ()=>{
 
     let {state_XportData, setState_XportData} = useContext(Context_XportData)
     let data = state_XportData
@@ -17,23 +17,6 @@ export let Post = ()=>{
     let {id} = useParams()
     let content = data.find((val)=>{return val.id === Number(id)}).content
     if(content==undefined) {errorLink('/error')}
-
-    let Blank = ({data})=>{
-
-        let tempData = Object.entries(data)[0]
-
-        let method = tempData[0]
-        let value = tempData[1]
-
-        switch(method){
-            case "article":
-            return <h1 className="article_PostC">{value}</h1>
-            case "text":
-            return <h3 className="text_PostC">{value}</h3>
-            case "img":
-            return <input className="photo_PostC" type="photo"></input>
-        }
-    }
 
 
 
@@ -59,4 +42,22 @@ export let Post = ()=>{
             }
         </>
     )
+}
+
+
+let Blank = ({data})=>{
+
+    let tempData = Object.entries(data)[0]
+
+    let method = tempData[0]
+    let value = tempData[1]
+
+    switch(method){
+        case "article":
+        return <h1 className="article_PostC">{value}</h1>
+        case "text":
+        return <h3 className="text_PostC">{value}</h3>
+        case "img":
+        return <input className="photo_PostC" type="photo"></input>
+    }
 }
